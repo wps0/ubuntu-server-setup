@@ -35,7 +35,7 @@ function main() {
     disableSudoPassword "${username}"
     addSSHKey "${username}" "${sshKey}"
     changeSSHConfig
-    setupUfw
+    #setupUfw
 
     if ! hasSwap; then
         setupSwap
@@ -74,16 +74,16 @@ function logTimestamp() {
     local filename=${1}
     {
         echo "===================" 
-        echo "Log generated on $(date)"
+        echo "Log generated at $(date)"
         echo "==================="
     } >>"${filename}" 2>&1
 }
 
 function setupTimezone() {
-    echo -ne "Enter the timezone for the server (Default is 'Asia/Singapore'):\n" >&3
+    echo -ne "Enter the timezone for the server (Default is 'Europe/Warsaw'):\n" >&3
     read -r timezone
     if [ -z "${timezone}" ]; then
-        timezone="Asia/Singapore"
+        timezone="Europe/Warsaw"
     fi
     setTimezone "${timezone}"
     echo "Timezone is set to $(cat /etc/timezone)" >&3
@@ -93,9 +93,9 @@ function setupTimezone() {
 function promptForPassword() {
    PASSWORDS_MATCH=0
    while [ "${PASSWORDS_MATCH}" -eq "0" ]; do
-       read -s -rp "Enter new UNIX password:" password
+       read -s -rp "Enter new UNIX password: " password
        printf "\n"
-       read -s -rp "Retype new UNIX password:" password_confirmation
+       read -s -rp "Retype new UNIX password: " password_confirmation
        printf "\n"
 
        if [[ "${password}" != "${password_confirmation}" ]]; then

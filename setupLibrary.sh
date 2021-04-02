@@ -53,13 +53,14 @@ function changeSSHConfig() {
 
 # Setup the Uncomplicated Firewall
 function setupUfw() {
-    sudo ufw allow OpenSSH
-    yes y | sudo ufw enable
+    #sudo ufw allow OpenSSH
+    #yes y | sudo ufw enable
+    echo "UFW setup has been disabled"
 }
 
 # Create the swap file based on amount of physical memory on machine (Maximum size of swap is 4GB)
 function createSwap() {
-   local swapmem=$(($(getPhysicalMemory) * 2))
+   local swapmem=$(($(getPhysicalMemory) * 1))
 
    # Anything over 4GB in swap is probably unnecessary as a RAM fallback
    if [ ${swapmem} -gt 4 ]; then

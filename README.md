@@ -6,9 +6,8 @@ This is a setup script to automate the setup and provisioning of Ubuntu servers.
 * Adds a public ssh key for the new user account
 * Disables password authentication to the server
 * Deny root login to the server
-* Setup Uncomplicated Firewall
 * Create Swap file based on machine's installed memory
-* Setup the timezone for the server (Default to "Asia/Singapore")
+* Setup the timezone for the server (Default to "Europe/Warsaw")
 * Install Network Time Protocol
 
 # Installation
@@ -21,7 +20,7 @@ sudo apt-get install git
 Clone this repository into your home directory:
 ```bash
 cd ~
-git clone https://github.com/jasonheecs/ubuntu-server-setup.git
+git clone https://github.com/wps0/ubuntu-server-setup.git
 ```
 
 Run the setup script
@@ -35,8 +34,8 @@ When the setup script is run, you will be prompted to enter the username and pas
 
 Following that, you will then be prompted to add a public ssh key (which should be from your local machine) for the new account. To generate an ssh key from your local machine:
 ```bash
-ssh-keygen -t rsa
-cat ~/.ssh/id_rsa.pub
+ssh-keygen -t ed25519
+cat ~/.ssh/id_ed25519.pub
 ```
 
 Finally, you will be prompted to specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the server. It will be set to 'Asia/Singapore' if you do not specify a value.
